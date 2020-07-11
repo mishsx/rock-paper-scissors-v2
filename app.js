@@ -37,50 +37,69 @@ const game = () => {
     });
   };
 
-const compareHands = (playerChoice, computerChoice) => {
-//Update the text.
-const winner =document.querySelector('.winner');
-//Checking for a tie
-if(playerChoice === computerChoice){
-  winner.textContent = 'It is a tie';
-  return;
-}
-//Check for rock
- if(playerChoice === 'rock'){
-   if(computerChoice === 'scissors'){
-     winner.textContent = 'Player Wins';
-     return;
-   }else {
-     winner.textContent = 'Computer Wins';
-     return;
-   }
- }
-//Check for Paper
-if(playerChoice === 'paper'){
-  if(computerChoice === 'rock'){
-    winner.textContent = 'Player Wins';
-    return;
-  }else {
-    winner.textContent = 'Computer Wins';
-    return;
+  const updateScore = () =>{
+    const playerScore=document.querySelector('.player-score p');
+    const computerScore= document.querySelector('.computer-score p');
+    playerScore.textContent = pScore;
+    computerScore.textContent = cScore;
   }
-}
-//Check for Scissors
-if(playerChoice === 'scissors'){
-  if(computerChoice === 'paper'){
-    winner.textContent = 'Player Wins';
-    return;
-  }else {
-    winner.textContent = 'Computer Wins';
-    return;
+
+  const compareHands = (playerChoice, computerChoice) => {
+    //Update the text.
+    const winner =document.querySelector('.winner');
+    //Checking for a tie
+    if(playerChoice === computerChoice){
+      winner.textContent = 'It is a tie';
+      return;
+    }
+    //Check for rock
+    if(playerChoice === 'rock'){
+      if(computerChoice === 'scissors'){
+        winner.textContent = 'Player Wins';
+        pScore ++;
+        updateScore();
+        return;
+      }else {
+        winner.textContent = 'Computer Wins';
+        cScore++;
+        updateScore();
+        return;
+      }
+    }
+    //Check for Paper
+    if(playerChoice === 'paper'){
+      if(computerChoice === 'rock'){
+        winner.textContent = 'Player Wins';
+        pScore ++;
+        updateScore();
+        return;
+      }else {
+        winner.textContent = 'Computer Wins';
+        cScore++;
+        updateScore();
+        return;
+      }
+    }
+    //Check for Scissors
+    if(playerChoice === 'scissors'){
+      if(computerChoice === 'paper'){
+        winner.textContent = 'Player Wins';
+        pScore ++;
+        updateScore();
+        return;
+      }else {
+        winner.textContent = 'Computer Wins';
+        cScore++;
+        updateScore();
+        return;
+      }
+    }
+
   }
-}
-
-}
 
 
 
-
+  
   // Calling the inner function
   startGame();
   playMatch();
